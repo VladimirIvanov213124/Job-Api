@@ -1,5 +1,6 @@
 from celery.result import AsyncResult
 
+from src.core.enums import CeleryResultEnum
 from src.interfeces.tasks import TaskServiceInterface
 from src.shemas.tasks import TaskSchema
 
@@ -24,10 +25,9 @@ class TaskUseCase:
         return task_id
 
     def get_excel_file(self, task_id: str) -> str:
-        # status = self.get_task_status(task_id)
-        # if status != CeleryResultEnum.success:
-        #     raise ValueError('status task is not success')
-        # data = self.get_task_results(task_id)
-        data = []
+        status = self.get_task_status(task_id)
+        if status != CeleryResultEnum.success:
+            raise ValueError('status task is not success')
+        data = self.get_task_results(task_id)
         filename = self._task_service.build_excel_file(task_id, data)
         return filename
