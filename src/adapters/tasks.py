@@ -22,7 +22,10 @@ class TaskService(TaskServiceInterface):
         path = f'media/{task_id}.csv'
         with open(path, 'w', newline='') as file:
             writer = csv.writer(file, delimiter=';')
+            # writer.writerow(['Score', 'Job Name', 'Job Url'])
+            # for row in data:
+            #     writer.writerow([row[0], row[1], row[2]])
             writer.writerow(['Score', 'Job Name', 'Job Url'])
-            for row in data:
-                writer.writerow([row[0], row[1], row[2]])
+            writer.writerow(['1', 'asd', 'askchv'])
+
         return path
