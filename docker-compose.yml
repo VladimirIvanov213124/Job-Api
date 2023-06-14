@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rest-api
+    command: python main.py
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+
